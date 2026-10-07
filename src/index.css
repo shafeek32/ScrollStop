@@ -1,0 +1,1174 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  color-scheme: light;
+  background-color: #ffffff;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  background-color: #ffffff;
+  position: relative;
+}
+
+/* Static screen container */
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Quote container positioned at 48% of viewport height */
+.quote-container {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 320px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  opacity: 0;
+  animation: subtleFadeIn 700ms ease-out forwards;
+}
+
+.quote-text {
+  color: #000000;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.55;
+  text-align: center;
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+.quote-author {
+  color: #666666;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  margin-top: 20px;
+  letter-spacing: 0;
+}
+
+/* Subtle continue text at the bottom */
+.continue-wrapper {
+  position: absolute;
+  bottom: calc(36px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: auto;
+  pointer-events: none;
+}
+
+.continue-wrapper.visible {
+  pointer-events: auto;
+}
+
+.continue-text {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 8px 14px;
+  margin: 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: #666666;
+  cursor: pointer;
+  opacity: 0;
+  letter-spacing: 0.02em;
+  transition: opacity 700ms ease-out, color 200ms ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.continue-wrapper.visible .continue-text {
+  opacity: 1;
+}
+
+.continue-text:hover,
+.continue-text:focus-visible {
+  color: #111111;
+}
+
+/* Opening Mindset Message Screen */
+.mindset-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 380px;
+  max-height: 100dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 32px 24px;
+  text-align: center;
+  opacity: 0;
+  animation: subtleFadeIn 800ms ease-out forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.mindset-title {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.mindset-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.mindset-stanza {
+  color: #2b2b2b;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
+  margin: 0;
+  text-align: center;
+  letter-spacing: -0.005em;
+}
+
+.mindset-accent {
+  font-weight: 600;
+  color: #000000;
+}
+
+.mindset-final {
+  color: #000000;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  margin: 6px 0 0;
+  text-align: center;
+}
+
+.mindset-continue-btn {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  margin-top: 28px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 400;
+  color: #555555;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: color 200ms ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+}
+
+.mindset-continue-btn:hover,
+.mindset-continue-btn:focus-visible {
+  color: #000000;
+}
+
+/* Universal subtle Back button */
+.back-button {
+  position: fixed;
+  top: calc(18px + env(safe-area-inset-top, 0px));
+  left: 20px;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  margin: 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: #888888;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 150ms ease;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.back-button:hover,
+.back-button:focus-visible {
+  color: #111111;
+}
+
+/* Pre-Scroll Notification Reminder */
+.reminder-container {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 320px;
+  padding: 0 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: subtleFadeIn 600ms ease-out forwards;
+}
+
+.reminder-header {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #000000;
+  letter-spacing: -0.015em;
+  margin: 0 0 24px 0;
+}
+
+.reminder-body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #111111;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px 0;
+}
+
+.reminder-subbody {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #666666;
+  margin: 0 0 36px 0;
+}
+
+.reminder-btn {
+  background: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #111111;
+  cursor: pointer;
+  padding: 10px 18px;
+  transition: opacity 150ms ease, color 150ms ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.reminder-btn:hover,
+.reminder-btn:focus-visible {
+  color: #666666;
+}
+
+/* -------------------------------------------
+   TikTok / Reels Upward-Only Vertical Feed
+------------------------------------------- */
+
+/* Master viewport container */
+.reels-feed-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: #ffffff;
+  overflow: hidden;
+  touch-action: pan-x; /* Prevent default vertical bounce/scroll */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Full-screen vertical reel section */
+.reel-section {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+/* Unified, optical center stack */
+.scroll-center-stack {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+  width: 100%;
+  max-width: 320px;
+  padding: 0 20px;
+}
+
+.scroll-title {
+  color: #111111;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.01em;
+}
+
+/* Prominent, elegant timer block */
+.scroll-timer-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.scroll-timer-number {
+  font-size: clamp(96px, 22vw, 136px);
+  font-weight: 200;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: #111111;
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+
+.scroll-timer-unit {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #888888;
+  margin-top: 8px;
+}
+
+/* Sleek downward scrolling animation */
+.scroll-down-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scroll-track-indicator {
+  width: 22px;
+  height: 38px;
+  border: 1.5px solid rgba(0, 0, 0, 0.3);
+  border-radius: 13px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  box-sizing: border-box;
+}
+
+.scroll-track-pill {
+  width: 3.5px;
+  height: 8.5px;
+  background-color: #111111;
+  border-radius: 2px;
+  animation: scrollPillSlide 1.7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scrollPillSlide {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(14px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+}
+
+/* Red Warning Screen Overlay when scrolling ceases */
+.scroll-warning-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #991b1b; /* Muted crimson red */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  text-align: center;
+  padding: 24px;
+  pointer-events: none;
+  animation: warningFadeIn 150ms ease-out forwards;
+}
+
+.scroll-warning-inner {
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.warning-title {
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.35;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.015em;
+}
+
+.warning-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  letter-spacing: 0;
+}
+
+@keyframes warningFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Extremely subtle fade in */
+@keyframes subtleFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------
+   Post-Scroll Experience Styles
+------------------------------------------- */
+
+/* Standard centered flow container */
+.flow-container {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 360px;
+  padding: 0 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: subtleFadeIn 600ms ease-out forwards;
+}
+
+/* Goal Input Screen */
+.flow-title {
+  color: #111111;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  margin-bottom: 28px;
+}
+
+.flow-input {
+  width: 100%;
+  max-width: 320px;
+  border: none;
+  border-bottom: 1.5px solid #d4d4d4;
+  background: transparent;
+  color: #111111;
+  font-size: 18px;
+  font-family: inherit;
+  padding: 10px 0;
+  text-align: center;
+  outline: none;
+  transition: border-color 200ms ease;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.flow-input:focus {
+  border-bottom-color: #111111;
+}
+
+.flow-input::placeholder {
+  color: #999999;
+}
+
+.flow-action-btn {
+  background: none;
+  border: none;
+  padding: 12px 20px;
+  margin-top: 32px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 400;
+  color: #444444;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: opacity 300ms ease, color 200ms ease;
+}
+
+.flow-action-btn:hover {
+  color: #000000;
+}
+
+/* Read Goal 3 Times */
+.goal-display-box {
+  color: #111111;
+  font-size: 24px;
+  font-weight: 450;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  margin: 28px 0;
+  max-width: 320px;
+  word-break: break-word;
+}
+
+.counter-step-text {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: #888888;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+}
+
+/* Stylish "I read it" Button */
+.read-goal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 9999px;
+  padding: 13px 28px;
+  margin-top: 24px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  outline: none;
+  transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.read-goal-btn:hover {
+  background-color: #222222;
+  border-color: #222222;
+  transform: translateY(-1.5px);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.14);
+}
+
+.read-goal-btn:active {
+  transform: translateY(0.5px) scale(0.98);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.read-goal-btn .btn-arrow {
+  display: inline-block;
+  font-size: 15px;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.read-goal-btn:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+/* Brain Reset Menu */
+.reset-menu-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #666666;
+  margin: 0 0 28px 0;
+  max-width: 280px;
+}
+
+.reset-options-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.reset-option-item {
+  background: none;
+  border: none;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 400;
+  color: #222222;
+  cursor: pointer;
+  transition: color 150ms ease, opacity 150ms ease;
+}
+
+.reset-option-item:hover {
+  color: #000000;
+}
+
+.reset-option-item.reset-featured-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px 10px 16px;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.reset-featured-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: -0.01em;
+  transition: opacity 150ms ease;
+}
+
+.reset-featured-desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: #666666;
+  line-height: 1.4;
+  max-width: 270px;
+  transition: color 150ms ease;
+}
+
+.reset-option-item.reset-featured-item:hover .reset-featured-title {
+  opacity: 0.8;
+}
+
+.reset-option-item.reset-featured-item:hover .reset-featured-desc {
+  color: #333333;
+}
+
+.ready-button {
+  margin-top: 18px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  color: #111111;
+  border-top: 1px solid #eeeeee;
+  padding-top: 18px;
+  width: 100%;
+  max-width: 160px;
+}
+
+/* Breathe Exercise */
+.breathe-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.breathe-tab-btn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-family: inherit;
+  color: #888888;
+  cursor: pointer;
+  padding: 4px 8px;
+  letter-spacing: 0.05em;
+  transition: color 150ms ease;
+}
+
+.breathe-tab-btn.active {
+  color: #111111;
+  font-weight: 500;
+}
+
+.breathe-visual-wrapper {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 0 24px;
+}
+
+.breathe-circle {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid #111111;
+  border-radius: 50%;
+  transition: transform cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.breathe-circle.inhale {
+  transform: scale(1.15);
+  transition-duration: 4s;
+}
+
+.breathe-circle.hold {
+  transform: scale(1.15);
+  transition-duration: 2s;
+}
+
+.breathe-circle.exhale {
+  transform: scale(0.65);
+  transition-duration: 6s;
+}
+
+.breathe-phase-title {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: #111111;
+  margin: 0;
+}
+
+.breathe-phase-sec {
+  font-size: 13px;
+  color: #666666;
+  margin-top: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Focus Exercise */
+.focus-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #000000;
+  border-radius: 50%;
+  margin: 36px 0;
+}
+
+.timer-countdown-text {
+  font-size: 32px;
+  font-weight: 200;
+  color: #111111;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Number Hunt Game (10 Cards, 2x5 Grid) */
+.hunt-playing-container {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 320px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.hunt-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 0 4px;
+}
+
+.hunt-target-label {
+  font-size: 20px;
+  font-weight: 500;
+  color: #111111;
+  letter-spacing: -0.01em;
+  min-width: 90px;
+}
+
+.hunt-wrong-indicator {
+  color: #b91c1c;
+  animation: subtleFadeIn 150ms ease-out forwards;
+}
+
+.hunt-stats-display {
+  display: flex;
+  gap: 14px;
+  font-size: 13px;
+  color: #777777;
+  font-variant-numeric: tabular-nums;
+}
+
+.hunt-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.hunt-card-btn {
+  aspect-ratio: 1;
+  background-color: #ffffff;
+  border: 1px solid #d4d4d4;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 400;
+  color: #777777;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+}
+
+.hunt-card-btn:active {
+  background-color: #f7f7f7;
+}
+
+.hunt-card-btn.found {
+  background-color: #f5f5f5;
+  border-color: #111111;
+  color: #000000;
+  font-weight: 500;
+}
+
+.hunt-card-btn.wrong {
+  background-color: #fef2f2;
+  border-color: #b91c1c;
+  color: #b91c1c;
+  font-weight: 500;
+}
+
+.hunt-complete-title {
+  color: #111111;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  margin-bottom: 20px;
+}
+
+.hunt-complete-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 16px;
+  color: #444444;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+
+/* Urge Surfing Exercise */
+.urge-text {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #222222;
+  margin: 0;
+  text-align: center;
+}
+
+.urge-guidance-box {
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: subtleFadeIn 400ms ease-out forwards;
+}
+
+.urge-guidance-line {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #111111;
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.urge-wave-wrapper {
+  width: 100%;
+  max-width: 340px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 28px 0 12px;
+}
+
+.urge-wave-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.urge-timer-subtle {
+  font-size: 13px;
+  font-weight: 400;
+  color: #888888;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+  margin-top: 18px;
+  text-align: center;
+}
+
+/* Final Commitment Check Screen */
+.commitment-container {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 340px;
+  padding: 0 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: subtleFadeIn 500ms ease-out forwards;
+}
+
+.commitment-question {
+  color: #000000;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-align: center;
+}
+
+.commitment-text-prompt {
+  color: #111111;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-align: center;
+}
+
+.commitment-buttons-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  margin-top: 36px;
+  width: 100%;
+}
+
+.commitment-buttons-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-top: 36px;
+  width: 100%;
+}
+
+.commitment-btn {
+  background: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: #111111;
+  cursor: pointer;
+  padding: 12px 18px;
+  transition: opacity 150ms ease, color 150ms ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.commitment-btn:hover,
+.commitment-btn:focus-visible {
+  color: #666666;
+}
+
+.commitment-choice-btn {
+  background: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #111111;
+  cursor: pointer;
+  padding: 10px 16px;
+  transition: color 150ms ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+  line-height: 1.45;
+}
+
+.commitment-choice-btn:hover,
+.commitment-choice-btn:focus-visible {
+  color: #666666;
+}
+
+.final-line {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #111111;
+  letter-spacing: -0.015em;
+  text-align: center;
+  margin: 0;
+}
+
+.final-line.active {
+  opacity: 1;
+}
+
+.final-line-go {
+  font-size: 44px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #000000;
+  margin: 0;
+  text-align: center;
+}
+
+/* Responsive adjustments for very small screens (<= 340px) */
+@media (max-width: 340px) {
+  .quote-container {
+    max-width: 290px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .quote-text {
+    font-size: 21px;
+    line-height: 1.5;
+  }
+  .quote-author {
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  .scroll-center-stack {
+    max-width: 290px;
+  }
+  .scroll-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .scroll-timer-number {
+    font-size: 88px;
+  }
+  .scroll-timer-block {
+    margin-bottom: 18px;
+  }
+  .warning-title {
+    font-size: 23px;
+  }
+  .warning-subtitle {
+    font-size: 15px;
+  }
+  .flow-container {
+    max-width: 290px;
+    padding: 0 16px;
+  }
+  .flow-title {
+    font-size: 20px;
+  }
+  .goal-display-box {
+    font-size: 21px;
+  }
+  .commitment-question,
+  .commitment-text-prompt,
+  .final-line {
+    font-size: 21px;
+    line-height: 1.4;
+  }
+  .commitment-choice-btn {
+    font-size: 13px;
+  }
+  .reminder-header {
+    font-size: 21px;
+  }
+  .reminder-body {
+    font-size: 15px;
+  }
+  .urge-text,
+  .urge-guidance-line {
+    font-size: 18px;
+  }
+  .urge-wave-wrapper {
+    max-width: 280px;
+    height: 120px;
+  }
+  .mindset-container {
+    max-width: 290px;
+    padding: 0 16px;
+  }
+  .mindset-title {
+    font-size: 18px;
+  }
+  .mindset-stanza {
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .mindset-final {
+    font-size: 16px;
+  }
+}
