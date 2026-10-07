@@ -61,6 +61,44 @@ export function AdminDashboard({ onNavigateHome }: AdminDashboardProps) {
     };
   }, [refreshData]);
 
+  // Ensure full page scrolling on admin dashboard across all devices/browsers
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+    const root = document.getElementById('root');
+
+    const prevHtmlOverflow = html.style.overflow;
+    const prevBodyOverflow = body.style.overflow;
+    const prevHtmlHeight = html.style.height;
+    const prevBodyHeight = body.style.height;
+    const prevBodySelect = body.style.userSelect;
+    const prevRootHeight = root?.style.height ?? '';
+
+    html.style.overflow = 'auto';
+    html.style.height = 'auto';
+    body.style.overflow = 'auto';
+    body.style.height = 'auto';
+    body.style.userSelect = 'auto';
+    if (root) {
+      root.style.height = 'auto';
+      root.style.minHeight = '100vh';
+      root.style.overflow = 'visible';
+    }
+
+    return () => {
+      html.style.overflow = prevHtmlOverflow;
+      html.style.height = prevHtmlHeight;
+      body.style.overflow = prevBodyOverflow;
+      body.style.height = prevBodyHeight;
+      body.style.userSelect = prevBodySelect;
+      if (root) {
+        root.style.height = prevRootHeight;
+        root.style.minHeight = '';
+        root.style.overflow = '';
+      }
+    };
+  }, []);
+
   // Compute metrics based on time filter
   const overview = useMemo(
     () => calculateOverviewMetrics(events, filter, lastRefreshed),
