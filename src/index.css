@@ -81,41 +81,37 @@ body {
   letter-spacing: 0;
 }
 
-/* Subtle continue text at the bottom */
+/* Continue text positioned directly beneath the quote */
 .continue-wrapper {
-  position: absolute;
-  bottom: calc(36px + env(safe-area-inset-bottom, 0px));
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 36px;
   text-align: center;
   width: auto;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 600ms ease-out;
 }
 
 .continue-wrapper.visible {
   pointer-events: auto;
+  opacity: 1;
 }
 
 .continue-text {
   background: none;
   border: none;
   outline: none;
-  padding: 8px 14px;
+  padding: 10px 18px;
   margin: 0;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   color: #666666;
   cursor: pointer;
-  opacity: 0;
   letter-spacing: 0.02em;
-  transition: opacity 700ms ease-out, color 200ms ease;
+  transition: color 200ms ease;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-}
-
-.continue-wrapper.visible .continue-text {
-  opacity: 1;
+  display: inline-block;
 }
 
 .continue-text:hover,

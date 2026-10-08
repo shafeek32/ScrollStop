@@ -91,7 +91,7 @@ SESSION ENDS (pure white screen, zero interactive elements, user leaves)
 * Optically centered at `48%` viewport height (`top: 48%; transform: translate(-50%, -50%)`).
 * Quote: `#000000`, 24px, 400 regular weight, 1.55 line height, max width 320px.
 * Author: `#666666`, 15px, preceded by em dash (`—`).
-* Fades in over 700ms; `continue →` appears after 3 seconds.
+* Fades in over 700ms; `continue →` appears right beneath the author/quote after 2 seconds.
 
 ### 2. Opening Mindset Message Screen
 * Introduces the core human philosophy of SCROLLSTOP before user begins the reset experience.

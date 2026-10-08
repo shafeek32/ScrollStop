@@ -29,7 +29,7 @@ function InitialQuoteScreen({ onContinue }: { onContinue: () => void }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowContinue(true);
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -39,17 +39,17 @@ function InitialQuoteScreen({ onContinue }: { onContinue: () => void }) {
       <div className="quote-container">
         <p className="quote-text">"{quote.text}"</p>
         <p className="quote-author">— {quote.author}</p>
-      </div>
 
-      <div className={`continue-wrapper ${showContinue ? 'visible' : ''}`}>
-        <button
-          type="button"
-          className="continue-text"
-          onClick={onContinue}
-          aria-label="Continue to mindset message"
-        >
-          continue →
-        </button>
+        <div className={`continue-wrapper ${showContinue ? 'visible' : ''}`}>
+          <button
+            type="button"
+            className="continue-text"
+            onClick={onContinue}
+            aria-label="Continue to mindset message"
+          >
+            continue →
+          </button>
+        </div>
       </div>
     </main>
   );
